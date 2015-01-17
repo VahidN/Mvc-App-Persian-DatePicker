@@ -1,0 +1,109 @@
+﻿@model MvcAppPersianDatePicker.Models.Post
+@{
+    ViewBag.Title = "Post";
+}
+<hr />
+<div class="row">
+    <div class="col-md-8 form-horizontal">
+        @using (Html.BeginForm(controllerName:"Home", actionName:"Index"))
+        {
+            <div class="form-group">
+                <label class="col-md-2 control-label">عنوان</label>
+                <div class="col-md-10">
+                    @Html.TextBoxFor(model => model.Title, new {@class = "form-control"})
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-2 control-label">تاريخ</label>
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.AddDate, new {@class = "form-control"})
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-2 control-label">تاريخ تو در تو</label>
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.NestedProperty.SaveDate, new {@class = "form-control"})
+                </div>
+            </div>
+            <button class="btn btn-primary" type="submit" >ارسال</button>
+        }
+    </div>
+</div>
+<hr />
+
+<div class="row">
+    <div class="col-md-8">
+        <button class="btn btn-primary btn-lg" id="opener">jQuery UI's in-line dialog</button>
+        <button class="btn btn-lg btn-default" id="openRemote">jQuery UI's remote dialog</button>
+    </div>
+</div>
+
+<div id="dialog" title="Dialog Title">
+    @Html.EditorFor(model => model.AddDate, new { @class = "form-control" })
+</div>
+<div id="formContainer"></div>
+<hr />
+
+<!-- Button trigger modal -->
+<div class="row">
+    <div class="col-md-8">
+        <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal1">
+            Bootstrap's in-line modal
+        </button>
+
+        <a data-toggle="modal" class="btn btn-lg btn-default" data-show="true"
+           href="@Url.Action("ShowPopup", "Home")" data-target="#myModal2">Bootstrap's remote modal</a>
+    </div>
+</div>
+
+<div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel2" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Modal title</h4>
+            </div>
+            <div class="modal-body"></div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="myModalLabel1">Modal title</h4>
+            </div>
+            <div class="modal-body">
+                @Html.EditorFor(model => model.AddDate, new { @class = "form-control" })
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script type="text/javascript">
+        $("#dialog").dialog({ autoOpen: false });
+        $("#opener").click(function () {
+            $("#dialog").dialog("open");
+        });
+
+        $("#openRemote").click(function () {
+            $("#formContainer").load("@Url.Action("ShowPopup", "Home")", function () {
+                var container = $(this);
+                container.dialog({
+                    modal: true
+                });
+            });
+        });
+    </script>
+}
