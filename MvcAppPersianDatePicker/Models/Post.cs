@@ -12,6 +12,9 @@ namespace MvcAppPersianDatePicker.Models
         public DateTime AddDate { set; get; }
 
         public OtherInfo NestedProperty { set; get; }
+
+        [UIHint("PersianDatePicker")]
+        public DateTime? AddDateNullable { set; get; }
     }
 
     public class OtherInfo

@@ -14,14 +14,14 @@ namespace MvcAppPersianDatePicker.CustomModelBinders
         {
             var valueResult = bindingContext.ValueProvider.GetValue(bindingContext.ModelName);
             var modelState = new ModelState { Value = valueResult };
-            object actualValue = null;
+            object actualValue = new DateTime(1900, 1, 1); //todo: توصيه شده تاريخ تولد خودتان را در اينجا قرار دهيد
             try
             {
                 var parts = valueResult.AttemptedValue.Split('/'); //ex. 1391/1/19
-                if (parts.Length != 3) return null;
-                int year = int.Parse(parts[0]);
-                int month = int.Parse(parts[1]);
-                int day = int.Parse(parts[2]);
+                if (parts.Length != 3) return actualValue;
+                var year = int.Parse(parts[0]);
+                var month = int.Parse(parts[1]);
+                var day = int.Parse(parts[2]);
                 actualValue = new DateTime(year, month, day, new PersianCalendar());
             }
             catch (FormatException e)

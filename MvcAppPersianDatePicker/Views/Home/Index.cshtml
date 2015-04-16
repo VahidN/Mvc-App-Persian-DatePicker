@@ -5,27 +5,33 @@
 <hr />
 <div class="row">
     <div class="col-md-8 form-horizontal">
-        @using (Html.BeginForm(controllerName:"Home", actionName:"Index"))
+        @using (Html.BeginForm(controllerName: "Home", actionName: "Index"))
         {
             <div class="form-group">
                 <label class="col-md-2 control-label">عنوان</label>
                 <div class="col-md-10">
-                    @Html.TextBoxFor(model => model.Title, new {@class = "form-control"})
+                    @Html.TextBoxFor(model => model.Title, new { @class = "form-control" })
                 </div>
             </div>
             <div class="form-group">
                 <label class="col-md-2 control-label">تاريخ</label>
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.AddDate, new {@class = "form-control"})
+                    @Html.EditorFor(model => model.AddDate, new { @class = "form-control" })
                 </div>
             </div>
             <div class="form-group">
                 <label class="col-md-2 control-label">تاريخ تو در تو</label>
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.NestedProperty.SaveDate, new {@class = "form-control"})
+                    @Html.EditorFor(model => model.NestedProperty.SaveDate, new { @class = "form-control" })
                 </div>
             </div>
-            <button class="btn btn-primary" type="submit" >ارسال</button>
+            <div class="form-group">
+                <label class="col-md-2 control-label">تاريخ نال پذير</label>
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.AddDateNullable, new { @class = "form-control" })
+                </div>
+            </div>
+            <button class="btn btn-primary" type="submit">ارسال</button>
         }
     </div>
 </div>

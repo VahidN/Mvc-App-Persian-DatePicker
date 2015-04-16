@@ -12,7 +12,8 @@ namespace MvcAppPersianDatePicker.Controllers
             var model = new Post
             {
                 AddDate = DateTime.Now.AddDays(-1), Title = "تست",
-                NestedProperty = new OtherInfo { SaveDate = DateTime.Now.AddDays(-2) }
+                NestedProperty = new OtherInfo { SaveDate = DateTime.Now.AddDays(-2) },
+                AddDateNullable = null
             };
             return View(model);
         }

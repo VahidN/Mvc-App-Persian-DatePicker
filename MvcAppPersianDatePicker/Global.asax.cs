@@ -15,6 +15,7 @@ namespace MvcAppPersianDatePicker
             RouteConfig.RegisterRoutes(RouteTable.Routes);
 
             ModelBinders.Binders.Add(typeof(DateTime), new PersianDateModelBinder());
+            ModelBinders.Binders.Add(typeof(DateTime?), new PersianDateModelBinder());
         }
     }
 }
