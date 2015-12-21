@@ -7,6 +7,7 @@ namespace MvcAppPersianDatePicker.Models
     {
         public string Title { set; get; }
 
+        [Required(ErrorMessage = "(*)")]
         // Location: Views\Shared\EditorTemplates\PersianDatePicker.cshtml
         [UIHint("PersianDatePicker")]
         public DateTime AddDate { set; get; }

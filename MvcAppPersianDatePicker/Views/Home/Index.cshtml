@@ -17,6 +17,7 @@
                 <label class="col-md-2 control-label">تاريخ</label>
                 <div class="col-md-10">
                     @Html.EditorFor(model => model.AddDate, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.AddDate)
                 </div>
             </div>
             <div class="form-group">

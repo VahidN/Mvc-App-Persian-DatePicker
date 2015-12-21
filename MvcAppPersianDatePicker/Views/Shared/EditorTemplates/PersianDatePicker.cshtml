@@ -14,8 +14,20 @@
     //var name = this.ViewContext.ViewData.ModelMetadata.PropertyName;
     var name = this.ViewContext.ViewData.TemplateInfo.HtmlFieldPrefix;
     var value = Model.HasValue ? toPersianDate(Model.Value) : string.Empty;
+    var validationAttributes = Html.GetUnobtrusiveValidationAttributes("");
+    var todayOnClick = string.Format("PersianDatePicker.Show(this, '{0}');", today);
 }
-<input type="text" dir="ltr"
+@*<input type="text" dir="ltr"
        name="@name" id="@name" class="form-control"
        value="@value"
-       onclick="PersianDatePicker.Show(this,'@today');" />
+       onclick="PersianDatePicker.Show(this, '@today');"/>*@
+
+@Html.TextBox(
+    "", value,
+    new RouteValueDictionary(validationAttributes)
+    {
+        { "class", "form-control" },
+        { "dir", "ltr"},
+        { "onclick", todayOnClick}
+    }
+)
